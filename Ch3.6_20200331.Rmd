@@ -1,20 +1,10 @@
 ---
-title: "Ch3_20200318"
+title: "Ch3.6_20200331"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r}
-library(googlesheets4)
-library(dplyr)
-library(lubridate)
-```
-```{r}
-我的年紀 <- 20
-my_age <- 我的年紀
 ```
 
 ## R Markdown
