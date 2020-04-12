@@ -7,6 +7,8 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## 3.6 List
+
 ```{r}
 vectorExample <- c(2, 6, 7)
 listExample <- list(2, 6, 7)
@@ -194,7 +196,7 @@ fromJSON("https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-C0032-001?Authori
 ```
 
 
-## 3.7
+## 3.7 物件儲存
 
 ```{r}
 save(commit,listExample,`小明108學年課表D`, file="0331today.Rda")
@@ -204,9 +206,141 @@ save(commit,listExample,`小明108學年課表D`, file="0331today.Rda")
 # load("0331today.Rda")
 ```
 
+## 3.6 List Practice 1
+
+學生小明，在108學年第1學期修了Alice老師所授的個體經濟學（得分85分）、Mark老師所授的總體經濟學(得分73分)。在108學年第2學期修了Jason老師所授的作業研究（得分90分）。
+```{r}
+`108-1` <- list(
+  list(
+    name="個體經濟學",
+    teacher="Alice",
+    grade=85
+  ),
+  list(
+    name="總體經濟學",
+    teacher="Mark",
+    grade=73
+  )
+)
+
+`108-1修課記錄` <- list(`108-1`)
+
+`108-2`<- list(
+  list(
+    name="作業研究",
+    teacher="Jason",
+    grade=90
+  )
+)
+
+`108-2修課記錄` <- list(`108-2`)
+
+`每學期修課記錄` <- list(
+  `108--1`=`108-1修課記錄`,
+  `108--2`=`108-2修課記錄`
+)
+
+`小明的修課記錄` <-
+  list(
+    name="小明",
+    semester=`每學期修課記錄`
+  )
+```
+
+參考答案
+```{r}
+# 108-1 
+course1_1081 <- 
+  list(
+    name="個體經濟學",
+    teacher="Alice",
+    grade=85
+  )
+course2_1081 <-
+  list(
+    name="總體經濟學",
+    teacher="Mark",
+    grade=78
+  )
+`108-1修課記錄` <- 
+  list(
+    course1_1081,
+    course2_1081
+  )
+
+# 108-2
+course1_1082 <- 
+  list(
+    name="作業研究",
+    teacher="Jason",
+    grade=90
+  )
+`108-2修課記錄` <- 
+  list(
+    course1_1082
+  )
+
+# 整合兩學期
+`每學期修課記錄` <- list(
+  `108-1`=`108-1修課記錄`,
+  `108-2`=`108-2修課記錄`
+)
+
+# 完成記錄
+`T小明的修課記錄` <- 
+  list(
+    name="小明",
+    semesters=`每學期修課記錄`
+  )
+```
+
+```{r}
+`TT小明的修課記錄` <- 
+  list(
+    name="小明",
+    semesters=
+      list(
+        `108-1`=
+          list(
+            year=108,
+            semester=1,
+            courses=
+              list(
+                list(
+                  name="個體經濟學",
+                  teacher="Alice",
+                  grade=85
+                ),
+                list(
+                  name="總體經濟學",
+                  teacher="Mark",
+                  grade=78
+                )
+              )
+            ),
+        `108-2`=
+          list(
+            year=108,
+            semester=2,
+            courses=
+              list(
+                list(
+                  name="作業研究",
+                  teacher="Jason",
+                  grade=90
+                )
+              )
+            )
+      ) 
+    )
+```
 
 
 
 
+## 3.6 List Practice 2
+今（“2020-03-31”）明（“2020-04-01”）「台北市」氣溫最高25度，最低18度；「新北市」氣溫最高24度，最低15度。
+```{r}
 
+```
 
