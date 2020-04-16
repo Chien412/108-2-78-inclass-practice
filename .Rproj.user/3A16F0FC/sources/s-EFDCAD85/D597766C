@@ -5,16 +5,17 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "474889749",
+    "hash" : "346942467",
     "id" : "D597766C",
-    "lastKnownWriteTime" : 1587044840,
-    "last_content_update" : 1587044840285,
+    "lastKnownWriteTime" : 1587046057,
+    "last_content_update" : 1587046057773,
     "path" : "~/Documents/GitHub/108-2-78-inclass-practice/Ch4(1)_20200416.Rmd",
     "project_path" : "Ch4(1)_20200416.Rmd",
     "properties" : {
-        "cursorPosition" : "101,22",
+        "cursorPosition" : "141,5",
+        "docOutlineVisible" : "0",
         "last_setup_crc32" : "EFDCAD85bb338d19",
-        "scrollLine" : "83"
+        "scrollLine" : "139"
     },
     "relative_order" : 2,
     "source_on_save" : false,
