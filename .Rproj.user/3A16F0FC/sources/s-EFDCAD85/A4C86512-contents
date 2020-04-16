@@ -133,7 +133,6 @@ a[-c(1,3)] -> a # 要回存才算真的刪除
 ### Practie 3
 
 
-刪除Mary的status, blookType.
 ```{r}
 library(lubridate)
 list1 <- 
@@ -157,7 +156,49 @@ str(list1)
   *刪除Jack的status.
 
 ```{r}
-list[[1][-c(3)]] -> list1
+list1[[1]][-c(3)] -> list1[[1]]
+str(list1)
 ```
+
+
+  *刪除Mary的status, blookType.
+
+
+list元素要刪除時也可以用[.]<-NULL, [[.]]<-NULL, $.<-NULL
+
+```{r}
+str(list1)
+list1[[2]][c(1,2)] <- NULL
+# list1[[2]][-c(1,2)] -> list1[[2]]
+str(list1)
+```
+
+
+3.6節List
+```{r}
+jsonlite::fromJSON("https://api.github.com/repos/tpemartin/108-2-56-inclass-practice/commits", simplifyDataFrame = F) -> githubCommit
+
+githubCommit[[3]][["commit"]][["committer"]]
+```
+
+```{r}
+githubCommit[[3]][["commit"]][["committer"]][-c(2)] ->
+  githubCommit[[3]][["commit"]][["committer"]]
+githubCommit[[3]][["commit"]][["committer"]]
+```
+
+```{r}
+githubCommit[[2]][["commit"]][["committer"]][c(2)] <- NULL
+githubCommit[[2]][["commit"]][["committer"]]
+
+githubCommit[[2]][["commit"]][["committer"]]$email <- NULL
+githubCommit[[2]][["commit"]][["committer"]]
+
+```
+
+
+
+
+
 
 
