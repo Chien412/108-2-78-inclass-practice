@@ -1,0 +1,8 @@
+"0","source(""https://www.dropbox.com/s/16h6ggua6qtydci/exchangeRate.R?dl=1"")"
+"2","Parsed with column specification:
+cols(
+  期間 = col_date(format = """"),
+  幣別 = col_character(),
+  匯率 = col_double()
+)
+"

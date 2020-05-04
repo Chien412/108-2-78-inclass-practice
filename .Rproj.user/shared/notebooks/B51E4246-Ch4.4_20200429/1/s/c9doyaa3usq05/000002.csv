@@ -1,0 +1,11 @@
+"0","source(""https://www.dropbox.com/s/qsrw069n94k61lj/transcript100to103_list.R?dl=1"")
+"
+"2","Parsed with column specification:
+cols(
+  年級 = col_integer(),
+  學屆 = col_integer(),
+  學系 = col_character(),
+  學院 = col_character(),
+  成績 = col_double()
+)
+"
