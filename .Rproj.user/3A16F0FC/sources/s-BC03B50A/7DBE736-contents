@@ -149,3 +149,101 @@ exchangeRate_after98 <-
 ```
 
 
+##### 可排序類別資料比較: {-}
+###### example裡誰零用錢大於1000: {-}
+
+```{r}
+print(example[c("name","allowance")])
+
+pick_allowanceOver1000 <- example$allowance >= "1001-2000"
+example$name[pick_allowanceOver1000]
+```
+
+factor資料可進一步分成可排序，與不可排序的，如：
+* 可排序： 以年齡層區分的類別，以所得級距區分的類別等。
+* 不排序： 性別，學系等。
+
+factor的設定在不調整時內定為不可排序資料，如要改成可排序類別資料，以先前已處理好的example$allowance 為例：
+```{r}
+example$allowance <- 
+  ordered(example$allowance)
+```
+
+```{r}
+class(example$allowance)
+```
+```{r}
+print(example[c("name","allowance")])
+
+pick_allowanceOver1000 <- example$allowance >= "1001-2000"
+example$name[pick_allowanceOver1000]
+```
+
+或在設定為factor時即把levels排好，並**ordered=T**:
+
+```{r}
+example$allowance <-
+  factor(
+    example$allowance,
+    levels=c("0-1000", "1001-2000", "2000+"),
+    ordered = T # 設定為可排序factor
+  )
+```
+
+```{r}
+pick_allowanceOver1000 <- example$allowance >= "1001-2000"
+example$name[pick_allowanceOver1000]
+```
+
+
+###### 刑事案件被害者人數{-}
+https://data.gov.tw/dataset/36240
+```{r}
+jsonlite::fromJSON("https://www.dropbox.com/s/3uijub7xheib405/list_victimAges_female.json?dl=1", simplifyDataFrame = F) -> list_victimAges_female
+```
+
+```{r}
+str(list_victimAges_female)
+View(list_victimAges_female$`數目`)
+sum(list_victimAges_female$`數目`)
+sum(list_victimAges_female$`數目`, na.rm=T) #rm=remove
+```
+
+請將list_victimAges_female各元素的class做合理設定。
+
+```{r}
+
+```
+
+
+```{r}
+levels(list_victimAges_female$年齡層) -> levels_ages
+print(levels_ages)
+```
+將levels順序改成: 不詳，總計，0_5歲，12_17歲，…，70歲以上。
+```{r}
+
+```
+
+情境
+```{r}
+sum(list_victimAges_female$數目, na.rm=T)
+sum(list_victimAges_female$數目[pick_above30], na.rm = T)
+```
+
+可選出「30_39歲以上受害者」的「要/不要」向量：
+```{r}
+# 先將類別資料設定成可排序類別資料
+list_victimAges_female$年齡層 <-
+  ordered(list_victimAges_female$年齡層)
+pick_above30 <- 
+  list_victimAges_female$年齡層 >= "30_39歲"
+```
+
+選出「30_39歲以上受害者」的數目
+```{r}
+sum(list_victimAges_female$數目, na.rm=T)
+sum(list_victimAges_female$數目[pick_above30], na.rm = T)
+```
+
+
