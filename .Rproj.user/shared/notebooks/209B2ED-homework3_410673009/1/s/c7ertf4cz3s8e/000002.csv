@@ -1,0 +1,12 @@
+"0","read_csv(""https://www.dropbox.com/s/xjzg1iuuws7tcha/table.csv?dl=1"") -> table"
+"2","Parsed with column specification:
+cols(
+  級分 = col_integer(),
+  國文 = col_character(),
+  英文 = col_character(),
+  數學 = col_character(),
+  社會 = col_character(),
+  自然 = col_character()
+)
+"
+"0","source(""https://www.dropbox.com/s/5oy56om4q0857tt/student10.R?dl=1"",encoding = ""UTF-8"")"
