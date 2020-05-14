@@ -2,8 +2,6 @@
 "0","pick_chinese <- students10$國文 >= 12"
 "0","pick_eng_math <- students10$英文 + students10$數學 >= 26"
 "0","ntpu_eco <- students10$姓名[pick_eco & pick_chinese & pick_eng_math]"
-"0","#eco_1 <- students10[pick_eco]"
-"0","#eco_1"
 "0","ntpu_eco"
 "1","[1]"
 "1"," ""陳依祈"""

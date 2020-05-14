@@ -1,4 +1,3 @@
-"0","levels_content <- levels(factor(badEmployers$lawContent))"
 "0","table_lawcontent <- table(badEmployers$lawContent)"
 "0","pick_max_lawcontent <- table_lawcontent == max(table_lawcontent)"
 "0","most_lawcontent <- table_lawcontent[pick_max_lawcontent]"
