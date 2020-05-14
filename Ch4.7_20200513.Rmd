@@ -144,6 +144,8 @@ population <- sort(population, decreasing=T)
 population
 ```
 
+**依數據重排類別小技巧，善用named vector:**
+
 4. 排完後population第一個元素值最大，它的名稱即是人口最多的縣市，第二元素值次大，它名稱是人口第二多縣市，依此類推。我們要的是population排完後的元素名稱。
 ```{r}
 newLevels <- names(population)
@@ -167,6 +169,53 @@ levels(covid19$縣市)
 ```{r}
 
 ```
+
+##### 4.7.1(2) levels重新排列
+
+年齡應該用年齡區間起始數字排序
+```{r}
+levels(covid19$年齡層)
+```
+
+1. 出levels中各年齡層的起始數字，存在startingAges
+```{r}
+level_names <- levels(covid19$年齡層)
+startingAges <- stringr::str_extract(
+  level_names,
+  "^[0-9]+" # regex：開頭的一串數字
+)
+startingAges
+```
+
+2. 將startingAges變成named integer vector
+```{r}
+# 要numerical class排的才一定對
+startingAges <- as.integer(startingAges)
+names(startingAges) <- level_names
+startingAges
+```
+
+3. 將startingAges從小排到大。
+```{r}
+sort(startingAges) -> startingAges
+```
+
+4. 重設levels排序
+```{r}
+covid19$年齡層 <- 
+  factor(
+    covid19$年齡層, names(startingAges)
+  )
+levels(covid19$年齡層)
+```
+
+
+
+
+
+
+
+
 
 
 
