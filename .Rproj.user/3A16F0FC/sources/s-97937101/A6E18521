@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1590072544904.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A6E18521",
+    "lastKnownWriteTime" : 7955939936193819181,
+    "last_content_update" : 1590072544904,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "6e2056373a6845268d64c2ce4737a770",
+        "name" : "dance",
+        "title" : "dance"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}

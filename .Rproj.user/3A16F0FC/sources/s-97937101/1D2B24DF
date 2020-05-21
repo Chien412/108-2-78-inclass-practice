@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1590072959922.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "1D2B24DF",
+    "lastKnownWriteTime" : 7955939936193819181,
+    "last_content_update" : 1590072959922,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "6cf5d7d545304267891f25bb06e18348",
+        "name" : "list_numberOfShows",
+        "title" : "list_numberOfShows"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}

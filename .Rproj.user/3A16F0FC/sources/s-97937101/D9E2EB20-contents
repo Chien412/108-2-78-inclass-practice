@@ -399,6 +399,29 @@ forcats::fct_c(factor1, factor2)
 ```
 
 
+### 4.7.5 綜合練習
+
+1
+將covid19$性別的levels名稱男、女改Male、Female。
+
+
+
+2
+以下資料為新北市垃圾車路線
+```{r}
+jsonlite::fromJSON("https://data.ntpc.gov.tw/od/data/api/EDC3AD26-8AE7-4916-A00B-BC6048D19BF8?$format=json") ->
+  garbageRoutes
+```
+
+(1)在garbageRoutes新增route元素，其元素值為對應garbageRoutes$linename裡粹取出的“XXX路線”字眼，如原本“A11路線(一、四)下午”的linename, 它的route值為“A11路線” 。（garbageRoutes$route為factor class)
+
+(2)請設定garbageRoutes$route的levels依其路線停靠總站數由小排到大陳列。
+
+(3)linename的“路線”字眼後面接的是營運時間，如“A11路線(一、四)下午”的linename, 它的營運時間為“(一、四)下午”。若沒寫時間的路線，它的營運時間為“全天”。請在garbageRoutes新增time元素，其元素值為對應linename所隱含的營運時間。（garbageRoutes$time為factor class, levels會有“(一、四)下午”, “下午”, “下午(1.4版)”, “晚上”, 及“全天”）
+
+(4)將garbageRoutes$time的levels中的“下午(1.4版)”改成“下午”。
+
+
 
 
 
