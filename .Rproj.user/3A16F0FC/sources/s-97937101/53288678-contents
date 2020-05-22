@@ -197,7 +197,7 @@ map(chr, ~ str_extract_all(.x,"[ad]"))
 
 
 
-
+##### 4.8.2 綜合練習
 
 
 
