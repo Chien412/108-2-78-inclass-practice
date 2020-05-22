@@ -160,7 +160,115 @@ highestPerson <-
   .[[1]]
 
 
+##### 5.1.4 .省略原則
 
+若代表中間物件的.在函數的「第一位」則.*可省略不寫，連它後面的,也去掉。小心若不在第一位則不可做省略.動作。
+```{r}
+levels(region) %>%
+  str_replace(.,"台北","北部") %>%
+  str_replace(.,"花蓮|台東","東部") %>%
+  str_replace(.,"台中","中部") ->
+  levels(region)
+```
+
+可改成
+```{r}
+levels(region) %>% 
+  str_replace("台北","北部") %>%
+  str_replace("花蓮|台東","東部") %>%
+  str_replace("台中","中部") -> 
+  levels(region)
+```
+
+
+要小心%>%是將左邊output放到右邊函數，這裡的右邊函數指的是最外圍的函數：
+```{r}
+# 資料
+population <- c(`cityA`=500,`cityB`=1500, `cityC`=399)
+cities <- c("cityA","cityA","cityB","cityB","cityC")
+
+# 分析步驟
+names(sort(population)) -> setLevels
+factor(cities, levels = setLevels) -> cities 
+```
+
+分析步驟你可能會寫
+```{r}
+population %>% 
+  names(sort(.)) %>%
+  factor(cities, levels=.) -> cities
+```
+
+會有誤源自於
+```{r}
+population %>% names(sort(.))
+```
+
+%>%是把population放到names()的input裡，而非sort()，但names()的input位置已被sort佔走。要改成
+```{r}
+population %>%
+  sort() %>%
+  names() %>%
+  factor(cities, levels=.) -> cities
+```
+
+
+##### 5.1.5 串接非單純函數程序
+
+若遇到pipe 串接的下一段並不是單純的函數的話，可以用{}把此段內容括起來並把前一段output要放的位置換成.。
+
+###### 範例3
+
+```{r}
+dataList <- list(
+  num=c(2,97,22,15,7),
+  chr=c("2","97","22","15","7")
+)
+```
+
+找出dataList中元素class為numeric裡那些大於50的數字
+
+```{r}
+is.numeric(dataList[[1]])
+is.numeric(dataList[[2]])
+map(dataList, ~ is.numeric(.x)) -> results
+```
+
+
+```{r}
+map(dataList, is.numeric) -> results
+unlist(results) -> pick_numeric
+
+dataList[pick_numeric] -> num_element
+(num_element[[1]] > 50) -> pick_big
+num_element[[1]][pick_big] -> bigNumber
+```
+
+```{r}
+map(dataList, is.numeric) %>%
+unlist(.) %>%
+
+dataList[.] %>%
+{(.[[1]] > 50)} %>%
+num_element[[1]][.] -> bigNumber
+```
+
+###### 5.1.5.0.0.1 範例4
+
+```{r}
+population %>% 
+  names(sort(.)) %>%
+  factor(cities, levels=.) -> cities
+```
+
+```{r}
+population %>% 
+  {names(sort(.))} %>%
+  factor(cities, levels=.) -> cities
+```
+
+
+##### 5.1.6 綜合練習
 
 
 
