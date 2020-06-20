@@ -1,0 +1,7 @@
+"0","ymd_hms(glue::glue(""{today()} 08:00:00""),tz=""Asia/Taipei"") %>%
+  whatNeedToDo_butler_mom()
+"
+"1","[1]"
+"1"," ""要不要來閱讀點國際時事？"""
+"1","
+"
