@@ -338,6 +338,179 @@ ymd_hms(glue::glue("{today()+days(1)} 00:20:00"),tz="Asia/Taipei") %>%
 
 
 
+### 5.3.5 logical condition
+
+由於if, if…else, if…if else…else, 都是用來決定要不要執行某個body，所以(condition) 必需要是「一個」T/F logical value。
+
+
+
+比對答案
+```{r}
+myAnswer <- c(2,3,6)
+correctAnswer <- c(2,3,5)
+
+if(myAnswer == correctAnswer){ # 只取用第一個T/F
+  print("你答對了")
+}
+```
+
+
+R3.5以上版本可以設定
+```{r}
+Sys.setenv("_R_CHECK_LENGTH_1_CONDITION_" = "true")
+```
+
+禁止length>1的logical condition.
+
+
+
+
+##### all, any
+
+```{r}
+myAnswer <- c(2,3,6)
+correctAnswer <- c(2,3,5)
+
+if(all(myAnswer == correctAnswer)){ # 要全TRUE
+  print("你答對了")
+}
+```
+
+```{r}
+if(any(myAnswer == correctAnswer)){ # 只要有一個TRUE
+  print("裡頭有數字是對的")
+}
+```
+
+
+##### Practice
+
+寫一個grading(myAnswer, correctAnswer)函數可以用來比對兩者是否class及所有元素都相同，是才回傳10分，不是回傳0分。
+
+
+
+
+##### && ||
+
+有時「資訊到這裡就夠判斷情境」會產生，這時可以用&&或｜｜
+
+************************
+
+對答案：
+
+class, 內容都要對
+
+```{r}
+myAnswer <- c(1,2,3)
+correctAnswer <- factor(c(1,2,3))
+
+if(is.factor(myAnswer) && all(myAnswer==correctAnswer)){
+  print("答對了")
+  10
+} else {
+  print("答錯了")
+  0
+}-> myGrade
+myGrade
+```
+
+
+```{r}
+if(is.factor(myAnswer) & all(myAnswer==correctAnswer)){
+  print("答對了")
+  10
+} else {
+  print("答錯了")
+  0
+}-> myGrade
+myGrade
+```
+
+
+&會計算所有relations，&&只計算到第一個出現FALSE的relation.
+
+&&用在「有一個錯就算錯」的情境。
+|會計算所有relations，||只計算到第一個出現TRUE的relation.
+
+||用在「有一個對就算對」的情境。
+在進行condition execution時，使用&&, ||會比&, |更有運算效率。
+
+
+
+condition最好少使用&或|因為兩邊relations若為logical向量長度>1，結果也會是個logical向量長度>1。
+
+
+
+
+只要符合以下資格均可申請補助：
+
+年齡>=65
+
+家庭子孩數>3
+
+```{r}
+myAge <- 40
+myChildrenNumber <- 5
+
+if(myAge >=65 | myChildrenNumber >3){
+  "符合申請資格"
+} else {
+  warning("不符合申請資格")
+}
+
+if(myAge >=65 ||  myChildrenNumber >3){
+  "符合申請資格"
+} else {
+  warning("不符合申請資格")
+}
+```
+
+
+那改成
+
+```{r}
+myAge <- 67
+myChildrenNumber <- 5
+```
+
+
+
+5.3節主要在介紹「依情境執行不同body」的conditional execution，另外還有「依情境不同產生不同值」的conditional assignment。
+
+一個logical relation:
+
+```{r}
+x <- c(2,5,10,-21,3,8)
+ifelse(x %% 2==0, "even", "odd")
+```
+
+
+多個logical relations:
+
+```{r}
+y <- sample(40:100,20, replace=T)
+dplyr::case_when(
+  y < 60 ~ "F",
+  60<=y & y < 70 ~"D",
+  71<=y & y < 80 ~"C",
+  80<=y & y < 90 ~"B",
+  90<=y ~ "A"
+)
+```
+
+
+##### Practice
+
+將5.4.3小節中whatNeedToDo_butler_mom body裡的cut改成使用dplyr::case_when.
+
+
+##### 5.3.6 綜合練習
+
+
+
+
+
+
 
 
 
